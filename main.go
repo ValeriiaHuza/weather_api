@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/ValeriiaHuza/weather_api/config"
 	"github.com/ValeriiaHuza/weather_api/controller"
@@ -48,7 +49,11 @@ func main() {
 	startCronJobs()
 
 	// Start the server
-	router.Run(":8000")
+	port := os.Getenv("APP_PORT")
+	if port == "" {
+		port = "8000" // default fallback
+	}
+	router.Run(":" + port)
 }
 
 func startCronJobs() {

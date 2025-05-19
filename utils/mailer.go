@@ -62,6 +62,5 @@ func SendEmail(to, subject, body string) {
 
 func BuildURL(path string) string {
 	host := os.Getenv("APP_URL")
-	port := os.Getenv("APP_PORT")
-	return fmt.Sprintf("%s:%s%s", host, port, path)
+	return host + path
 }
