@@ -100,7 +100,7 @@ func (ss *SubscribeService) Unsubscribe(token string) *error.AppError {
 		return error.ErrTokenNotFound
 	}
 
-	if err := db.DB.Delete(&sub).Error; err != nil {
+	if err := db.DB.Unscoped().Delete(&sub).Error; err != nil {
 		return error.ErrInvalidToken
 	}
 
